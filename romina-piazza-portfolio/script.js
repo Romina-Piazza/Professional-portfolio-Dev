@@ -77,8 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
         {"name": "Git", "icon": "fab fa-git-alt", "filterKey": "Git"},
         {"name": "Webpack", "icon": "fas fa-box", "filterKey": "Webpack"},
         {"name": "Figma", "icon": "fab fa-figma", "filterKey": "Figma"},
-        {"name": "Responsive Design", "icon": "fas fa-mobile-alt", "filterKey": "Responsive Design"},
-        {"name": "Glassmorphism", "icon": "fas fa-glass-whiskey", "filterKey": "Glassmorphism"}
+        {"name": "Responsive Design", "icon": "fas fa-mobile-alt", "filterKey": "Responsive Design"}
     ];
 
     const skillsGrid = document.getElementById('skills-grid');
