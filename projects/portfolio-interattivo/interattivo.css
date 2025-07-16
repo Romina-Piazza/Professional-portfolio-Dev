@@ -1,0 +1,521 @@
+/* Variabili CSS per la palette di colori */
+:root {
+    --color-primary-dark: #0A0A0A; /* Nero Profondo */
+    --color-secondary-dark: #1B1B1B; /* Sfondo per effetto glass */
+    --color-accent-cyan: #00FFFF; /* Ciano Elettrico */
+    --color-accent-gold: #FFD700; /* Oro */
+    --color-text-light: #F5F5F5; /* Bianco Fumo */
+    --color-text-medium: #CCCCCC; /* Grigio Chiaro */
+
+    --glass-background: rgba(255, 255, 255, 0.05); /* Sfondo semi-trasparente per il vetro */
+    --glass-border: rgba(255, 255, 255, 0.1); /* Bordo semi-trasparente per il vetro */
+    --backdrop-blur: 10px; /* Grado di sfocatura per l'effetto vetro */
+    --border-radius-large: 15px;
+    --border-radius-small: 8px;
+
+    --transition-speed: 0.3s;
+}
+
+/* Reset e Stili Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 100%); /* Sfondo sfumato scuro */
+    color: var(--color-text-light);
+    line-height: 1.6;
+    overflow-x: hidden; /* Previene scroll orizzontale non desiderato */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Effetto Glass (Riusabile) */
+.glass-effect {
+    background: var(--glass-background);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--backdrop-blur)); /* Questo è il segreto del glass effect */
+    -webkit-backdrop-filter: blur(var(--backdrop-blur)); /* Per compatibilità con Safari */
+    border-radius: var(--border-radius-large);
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Ombra per profondità */
+    transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+}
+
+.glass-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px 0 rgba(0, 255, 255, 0.15); /* Ombra accentuata sull'hover */
+}
+
+/* Header e Navbar */
+.header {
+    background-color: rgba(10, 10, 10, 0.8); /* Leggermente trasparente */
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    transition: all var(--transition-speed) ease;
+}
+
+.header.sticky {
+    background-color: rgba(10, 10, 10, 0.95);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__logo {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--color-accent-cyan);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.navbar__logo span {
+    color: var(--color-text-light);
+}
+
+.navbar__logo:hover {
+    color: var(--color-text-light);
+}
+
+.navbar__menu {
+    list-style: none;
+    display: flex;
+}
+
+.navbar__item {
+    margin-left: 30px;
+}
+
+.navbar__link {
+    color: var(--color-text-medium);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    position: relative;
+    transition: color var(--transition-speed);
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent-cyan);
+    bottom: -5px;
+    left: 0;
+    transition: width var(--transition-speed) ease-in-out;
+}
+
+.navbar__link:hover {
+    color: var(--color-text-light);
+}
+
+.navbar__link:hover::after,
+.navbar__link.active::after {
+    width: 100%;
+}
+
+.navbar__toggle {
+    display: none; /* Nascosto di default, visibile su mobile */
+    background: none;
+    border: none;
+    color: var(--color-accent-cyan);
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/* Bottoni Generici */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: var(--border-radius-small);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-accent-cyan);
+    color: var(--color-primary-dark);
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-text-light);
+    color: var(--color-primary-dark);
+    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--color-accent-cyan);
+    border: 2px solid var(--color-accent-cyan);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-accent-cyan);
+    color: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Sezioni Generiche */
+section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1; /* Per assicurare che il glass effect sia sopra il background */
+}
+
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-accent-cyan);
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 700;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-accent-gold);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+/* Stili specifici per la pagina di dettaglio del progetto */
+
+.project-detail-hero {
+    padding: 80px 0;
+    text-align: center;
+    background: linear-gradient(135deg, var(--color-primary-dark) 0%, rgba(0, 255, 255, 0.1) 100%); /* Sfumatura leggera */
+    position: relative;
+    overflow: hidden;
+}
+
+.project-detail-hero .glass-effect {
+    padding: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.project-detail-hero h1 {
+    font-size: 3em;
+    margin-bottom: 15px;
+    color: var(--color-text-light);
+}
+
+.project-tagline {
+    font-size: 1.4em;
+    color: var(--color-accent-gold);
+    margin-bottom: 30px;
+}
+
+.project-meta {
+    margin-bottom: 40px;
+    font-size: 1.1em;
+    color: var(--color-text-medium);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.project-meta i {
+    color: var(--color-accent-cyan);
+    margin-right: 8px;
+}
+
+.project-main-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-main-links .btn {
+    padding: 15px 30px;
+    font-size: 1.1em;
+}
+
+/* Sezioni di Contenuto */
+.project-overview,
+.project-challenges,
+.project-gallery,
+.project-conclusion {
+    padding: 60px 0;
+}
+
+.project-overview p,
+.project-conclusion p {
+    color: var(--color-text-medium);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.project-overview ul {
+    list-style: none;
+    margin-top: 20px;
+    text-align: left;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--color-text-medium);
+    line-height: 1.8;
+}
+
+.project-overview ul li {
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.project-overview ul li::before {
+    content: "\f00c"; /* Icona checkmark di Font Awesome */
+    font-family: "Font Awesome 5 Free"; /* Assicurati di usare il font corretto */
+    font-weight: 900;
+    color: var(--color-accent-cyan);
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.challenge-item {
+    background-color: rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--border-radius-small);
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.challenge-item h3 {
+    color: var(--color-accent-gold);
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    text-align: left; /* Sovrascrive lo stile h2 globale */
+}
+.challenge-item h3::after { /* Rimuovi la barra sotto h3 in questo contesto */
+    content: none;
+}
+
+.challenge-item p {
+    color: var(--color-text-medium);
+    line-height: 1.6;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--border-radius-small);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-speed) ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.02);
+}
+
+.project-conclusion {
+    text-align: center;
+}
+
+.project-conclusion .btn {
+    margin-top: 30px;
+}
+
+/* Footer */
+.footer {
+    background-color: rgba(10, 10, 10, 0.9);
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer p {
+    color: var(--color-text-medium);
+}
+
+/* Media Queries per la responsività */
+@media (max-width: 992px) {
+    .navbar__menu {
+        position: fixed;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(10, 10, 10, 0.95);
+        flex-direction: column;
+        padding: 20px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all var(--transition-speed) ease;
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar__menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .navbar__item {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .navbar__toggle {
+        display: block;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-pic {
+        width: 200px;
+        height: 200px;
+    }
+
+    .glass-effect {
+        padding: 30px;
+    }
+
+    .my-approach-section .approach-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .project-detail-hero h1 {
+        font-size: 2.5em;
+    }
+
+    .project-tagline {
+        font-size: 1.2em;
+    }
+
+    .project-detail-hero .glass-effect {
+        padding: 30px;
+    }
+
+    .project-main-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .project-main-links .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1em;
+    }
+
+    .skills-grid, .projects-grid, .my-approach-section .approach-content {
+        grid-template-columns: 1fr;
+    }
+
+    .project-filters button {
+        margin: 5px;
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+
+    .project-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .case-study-detail h1 {
+        font-size: 2.2em;
+    }
+
+    .case-study-detail h2 {
+        font-size: 1.6em;
+    }
+
+    .case-study-detail p, .case-study-detail ul {
+        font-size: 0.95em;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar__logo {
+        font-size: 1.5em;
+    }
+
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+
+    .hero-subtitle {
+        font-size: 1em;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .glass-effect {
+        padding: 20px;
+    }
+}

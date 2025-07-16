@@ -1,0 +1,828 @@
+/* Variabili CSS per la palette di colori */
+:root {
+    --color-primary-dark: #0A0A0A; /* Nero Profondo */
+    --color-secondary-dark: #1B1B1B; /* Sfondo per effetto glass */
+    --color-accent-cyan: #00FFFF; /* Ciano Elettrico */
+    --color-accent-gold: #FFD700; /* Oro */
+    --color-text-light: #F5F5F5; /* Bianco Fumo */
+    --color-text-medium: #CCCCCC; /* Grigio Chiaro */
+
+    --glass-background: rgba(255, 255, 255, 0.05); /* Sfondo semi-trasparente per il vetro */
+    --glass-border: rgba(255, 255, 255, 0.1); /* Bordo semi-trasparente per il vetro */
+    --backdrop-blur: 10px; /* Grado di sfocatura per l'effetto vetro */
+    --border-radius-large: 15px;
+    --border-radius-small: 8px;
+
+    --transition-speed: 0.3s;
+}
+
+/* Reset e Stili Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(135deg, #0A0A0A 0%, #1A1A2E 100%); /* Sfondo sfumato scuro */
+    color: var(--color-text-light);
+    line-height: 1.6;
+    overflow-x: hidden; /* Previene scroll orizzontale non desiderato */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Effetto Glass */
+.glass-effect {
+    background: var(--glass-background);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--backdrop-blur)); /* Questo è il segreto del glass effect */
+    -webkit-backdrop-filter: blur(var(--backdrop-blur)); /* Per compatibilità con Safari */
+    border-radius: var(--border-radius-large);
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); /* Ombra per profondità */
+    transition: transform var(--transition-speed) ease-in-out, box-shadow var(--transition-speed) ease-in-out;
+}
+
+.glass-effect:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 48px 0 rgba(0, 255, 255, 0.15); /* Ombra accentuata sull'hover */
+}
+
+/* Header e Navbar */
+.header {
+    background-color: rgba(10, 10, 10, 0.8); /* Leggermente trasparente */
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(5px);
+    transition: all var(--transition-speed) ease;
+}
+
+.header.sticky {
+    background-color: rgba(10, 10, 10, 0.95);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__logo {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--color-accent-cyan);
+    text-decoration: none;
+    transition: color var(--transition-speed);
+}
+
+.navbar__logo span {
+    color: var(--color-text-light);
+}
+
+.navbar__logo:hover {
+    color: var(--color-text-light);
+}
+
+.navbar__menu {
+    list-style: none;
+    display: flex;
+}
+
+.navbar__item {
+    margin-left: 30px;
+}
+
+.navbar__link {
+    color: var(--color-text-medium);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+    position: relative;
+    transition: color var(--transition-speed);
+}
+
+.navbar__link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-accent-cyan);
+    bottom: -5px;
+    left: 0;
+    transition: width var(--transition-speed) ease-in-out;
+}
+
+.navbar__link:hover {
+    color: var(--color-text-light);
+}
+
+.navbar__link:hover::after,
+.navbar__link.active::after {
+    width: 100%;
+}
+
+.navbar__toggle {
+    display: none; /* Nascosto di default, visibile su mobile */
+    background: none;
+    border: none;
+    color: var(--color-accent-cyan);
+    font-size: 1.8em;
+    cursor: pointer;
+}
+
+/* Bottoni Generici */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: var(--border-radius-small);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--color-accent-cyan);
+    color: var(--color-primary-dark);
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-text-light);
+    color: var(--color-primary-dark);
+    box-shadow: 0 6px 20px rgba(0, 255, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+/* Sezioni Generiche */
+section {
+    padding: 80px 0;
+    position: relative;
+    z-index: 1; /* Per assicurare che il glass effect sia sopra il background */
+}
+
+h1, h2 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-accent-cyan);
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 700;
+    position: relative;
+}
+
+h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-accent-gold);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+
+/* Hero Section */
+.hero-section {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Per le particelle di sfondo se implementate */
+}
+
+.hero-section .glass-effect {
+    padding: 60px;
+    max-width: 900px;
+}
+
+.hero-content h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.hero-content h1 span {
+    color: var(--color-text-light);
+}
+
+.hero-subtitle {
+    font-size: 1.4em;
+    color: var(--color-text-medium);
+    margin-bottom: 40px;
+}
+
+.hero-subtitle span {
+    color: var(--color-accent-gold);
+    font-weight: 600;
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-image {
+    flex-shrink: 0;
+}
+
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--color-accent-cyan);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+    transition: transform var(--transition-speed);
+}
+
+.profile-pic:hover {
+    transform: scale(1.05);
+}
+
+.about-text {
+    font-size: 1.1em;
+    color: var(--color-text-medium);
+}
+
+.about-text p {
+    margin-bottom: 15px;
+}
+
+.about-text p span {
+    color: var(--color-accent-gold);
+    font-weight: 600;
+}
+
+/* My Approach Section */
+.my-approach-section .approach-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.approach-item {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 25px;
+    border-radius: var(--border-radius-small);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform var(--transition-speed), background-color var(--transition-speed);
+}
+
+.approach-item:hover {
+    transform: translateY(-5px);
+    background-color: rgba(0, 255, 255, 0.1);
+}
+
+.approach-item i {
+    font-size: 3.5em;
+    color: var(--color-accent-gold);
+    margin-bottom: 20px;
+}
+
+.approach-item h3 {
+    color: var(--color-text-light);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+
+.approach-item p {
+    color: var(--color-text-medium);
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+
+/* Skills Section */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 25px;
+    text-align: center;
+}
+
+.skill-item {
+    background-color: rgba(255, 255, 255, 0.03);
+    padding: 20px;
+    border-radius: var(--border-radius-small);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.skill-item:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.skill-item.active-skill {
+    background-color: rgba(0, 255, 255, 0.2);
+    border-color: var(--color-accent-cyan);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
+}
+
+.skill-item i {
+    font-size: 3em;
+    color: var(--color-accent-cyan);
+    margin-bottom: 15px;
+}
+
+.skill-item h3 {
+    color: var(--color-text-light);
+    font-size: 1.2em;
+}
+
+/* Projects Section */
+.project-filters {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    background: var(--glass-background);
+    border: 1px solid var(--glass-border);
+    color: var(--color-text-medium);
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: var(--border-radius-small);
+    cursor: pointer;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    backdrop-filter: blur(var(--backdrop-blur));
+}
+
+.filter-btn:hover {
+    background-color: rgba(0, 255, 255, 0.1);
+    color: var(--color-accent-cyan);
+}
+
+.filter-btn.active {
+    background-color: var(--color-accent-cyan);
+    color: var(--color-primary-dark);
+    box-shadow: 0 4px 15px rgba(0, 255, 255, 0.4);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius-large);
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+.project-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 12px 30px rgba(0, 255, 255, 0.2);
+}
+
+.project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.project-info {
+    padding: 25px;
+}
+
+.project-info h3 {
+    color: var(--color-accent-cyan);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.project-info p {
+    color: var(--color-text-medium);
+    margin-bottom: 15px;
+}
+
+.project-tech span {
+    display: inline-block;
+    background-color: rgba(0, 255, 255, 0.15);
+    color: var(--color-accent-cyan);
+    padding: 5px 10px;
+    border-radius: var(--border-radius-small);
+    font-size: 0.9em;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+.project-links {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap; /* Permette ai link di andare a capo su schermi piccoli */
+    gap: 15px;
+}
+
+/* Stile comune per tutti i link all'interno di .project-links */
+.project-links a {
+    display: inline-flex; /* Per allineare icona e testo */
+    align-items: center;
+    gap: 8px; /* Spazio tra icona e testo */
+    padding: 10px 15px; /* Padding comune */
+    border-radius: var(--border-radius-small);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    border: 1px solid transparent;
+}
+
+.project-links a i {
+    margin-right: 0px; /* Reset eventuale margin-right per icone */
+}
+
+/* Stile specifico per il link del Case Study */
+.btn-case-study {
+    background-color: var(--color-accent-gold);
+    color: var(--color-primary-dark);
+    box-shadow: 0 4px 10px rgba(255, 215, 0, 0.3);
+    border-color: var(--color-accent-gold);
+}
+
+.btn-case-study:hover {
+    background-color: var(--color-text-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 215, 0, 0.5);
+    color: var(--color-primary-dark);
+    border-color: var(--color-text-light);
+}
+
+
+/* Stili per GitHub e Demo Live per coerenza */
+.project-links a:not(.btn-case-study) {
+    color: var(--color-accent-cyan); /* Colore ciano */
+    border-color: var(--color-accent-cyan); /* Bordo ciano */
+    background-color: transparent;
+}
+
+.project-links a:not(.btn-case-study):hover {
+    color: var(--color-text-light);
+    background-color: rgba(0, 255, 255, 0.1);
+    border-color: var(--color-text-light);
+}
+
+
+/* Contact Section */
+.contact-section p {
+    text-align: center;
+    color: var(--color-text-medium);
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--border-radius-small);
+    padding: 15px;
+    margin-bottom: 20px;
+    color: var(--color-text-light);
+    font-size: 1em;
+    outline: none;
+    transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--color-accent-cyan);
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.3);
+}
+
+.contact-form ::placeholder {
+    color: var(--color-text-medium);
+    opacity: 0.7;
+}
+
+/* Pulsante principale del form */
+.contact-form .btn-primary {
+    align-self: flex-start; /* Bottone allineato a sinistra nel form */
+    margin-bottom: 20px; /* Spazio dopo il bottone del form */
+}
+
+/* Nuovo stile per il bottone Calendly */
+.btn-calendar {
+    margin: 20px auto 30px auto; /* Centra il bottone e aggiunge spazio */
+    display: flex; /* Per centrare l'icona e il testo */
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Spazio tra icona e testo */
+    max-width: 250px; /* Limita la larghezza del bottone */
+    text-align: center;
+}
+.btn-calendar i {
+    font-size: 1.2em; /* Dimensione dell'icona nel bottone */
+}
+
+
+.social-links {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.social-links a {
+    color: var(--color-accent-cyan);
+    font-size: 2.5em;
+    margin: 0 15px;
+    transition: color var(--transition-speed), transform var(--transition-speed);
+}
+
+.social-links a:hover {
+    color: var(--color-accent-gold);
+    transform: translateY(-5px);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-primary-dark);
+    text-align: center;
+    padding: 30px 0;
+    color: var(--color-text-medium);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.9em;
+}
+
+/* Stili per le pagine dei case study */
+.case-study-detail {
+    padding-top: 80px; /* Spazio sopra il contenuto */
+    padding-bottom: 80px;
+}
+
+.case-study-detail h1 {
+    font-size: 2.8em;
+    color: var(--color-accent-gold); /* Colore oro per il titolo principale del case study */
+}
+
+.case-study-detail h2 {
+    font-size: 2em;
+    color: var(--color-accent-cyan);
+    text-align: left;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 10px;
+}
+
+.case-study-detail h2::after {
+    left: 10px;
+    transform: translateX(0);
+}
+
+.case-study-detail h3 {
+    font-size: 1.5em;
+    color: var(--color-text-light);
+    margin-top: 30px;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.case-study-detail p, .case-study-detail ul {
+    color: var(--color-text-medium);
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.case-study-detail ul {
+    list-style: disc;
+    margin-left: 25px;
+    padding-left: 0;
+}
+
+.case-study-detail ul li {
+    margin-bottom: 10px;
+}
+
+.project-tagline {
+    font-size: 1.3em;
+    text-align: center;
+    color: var(--color-text-light);
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.case-study-actions {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Media Queries per la Responsività */
+@media (max-width: 992px) {
+    .navbar__menu {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        background-color: rgba(10, 10, 10, 0.95);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 0;
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar__menu.active {
+        display: flex;
+    }
+
+    .navbar__item {
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    .navbar__toggle {
+        display: block;
+    }
+
+    .hero-content h1 {
+        font-size: 2.8em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2em;
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-pic {
+        margin-bottom: 20px;
+    }
+
+    .glass-effect {
+        padding: 30px;
+    }
+
+    .my-approach-section .approach-content {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2em;
+    }
+
+    .hero-subtitle {
+        font-size: 1em;
+    }
+
+    .skills-grid, .projects-grid, .my-approach-section .approach-content {
+        grid-template-columns: 1fr;
+    }
+
+    .project-filters button {
+        display: block;
+        width: calc(100% - 10px);
+        margin: 10px auto;
+    }
+
+    .project-links {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .case-study-detail h1 {
+        font-size: 2.2em;
+    }
+    .case-study-detail h2 {
+        font-size: 1.6em;
+    }
+    .case-study-detail p, .case-study-detail ul {
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar__logo {
+        font-size: 1.5em;
+    }
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+    .hero-subtitle {
+        font-size: 0.9em;
+    }
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+    .glass-effect {
+        padding: 20px;
+    }
+}
+
+/* =====================
+   ACCESSIBILITÀ E UX
+   ===================== */
+
+/* Skip-link: visibile solo a tab/focus, nascosto normalmente */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    background: var(--color-accent-gold);
+    color: var(--color-primary-dark);
+    padding: 10px 18px;
+    z-index: 10000;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 1em;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    transition: left 0.2s, top 0.2s;
+}
+.skip-link:focus {
+    left: 16px;
+    top: 16px;
+}
+
+/* ARIA live region: invisibile ma accessibile agli screen reader */
+#aria-live-region {
+    position: absolute !important;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* Focus visibile e accessibile su tutti gli elementi interattivi */
+:focus {
+    outline: 2px solid var(--color-accent-gold);
+    outline-offset: 2px;
+    transition: outline 0.2s;
+}
+.btn:focus, .filter-btn:focus, .skill-item:focus, .navbar__link:focus, .navbar__toggle:focus, input:focus, textarea:focus {
+    box-shadow: 0 0 0 3px var(--color-accent-gold);
+    background: var(--color-accent-cyan);
+    color: var(--color-primary-dark);
+}
+
+
+.glass-effect {
+    color: var(--color-text-light);
+    background: rgba(10, 10, 10, 0.15);
+}
+
+
+.btn, .filter-btn, .skill-item {
+    transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+}
+
+/* Fallback noscript */
+noscript div {
+    background: var(--color-secondary-dark);
+    border-radius: var(--border-radius-small);
+    padding: 1em;
+    margin: 2em auto;
+    max-width: 600px;
+    color: var(--color-accent-gold);
+    font-size: 1.1em;
+}
